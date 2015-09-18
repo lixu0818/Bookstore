@@ -1,0 +1,49 @@
+﻿@model List<IdentitySample.Models.Book>
+
+@{
+    ViewBag.Title = "BookList";
+}
+
+<div class="jumbotron">
+            <p>BookList:</p>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>CoverImage</th>
+                    <th>Condition</th>
+                    <th>Detail</th>
+                    <th>管理员Delete</th>
+                    <th>管理员Edit</th>
+
+
+                </tr>
+                @foreach (var book in Model)
+            {
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Name</td>
+                        <td>@book.Price</td>
+                        <td><img src="@Url.Content(book.CoverImagePath)" alt="Cannot display cover" width="100" /></td>
+                        <td>@book.Condition</td>
+                        <td>@Html.ActionLink("See details", "ShowBookDetails", "Book", new { id = book.Id }, null)</td>
+                        <td>@Html.ActionLink("Delete", "DeleteBook", "Book", new { id = book.Id }, null)</td>
+                        <td>@Html.ActionLink("Edit", "EditBook", "Book", new { id = book.Id }, null)</td>
+
+                    </tr>
+
+                }
+            </table>
+            <br />
+            @for (int i = 1; i <= (ViewBag.totalCount - 1) / 6 + 1; i++)
+            {
+
+                @Html.ActionLink(i.ToString(), "BookList", "Book", new { pageNumber = i }, null)
+                <span>&nbsp</span>
+            }
+
+            <br />
+            @Html.ActionLink("Home", "Index", "Home")
+        </div>
+

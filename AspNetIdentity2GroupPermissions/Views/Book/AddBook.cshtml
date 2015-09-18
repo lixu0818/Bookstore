@@ -1,0 +1,40 @@
+﻿@model IdentitySample.Models.Book
+
+@{
+    ViewBag.Title = "Add a new book:";
+}
+
+<div class="jumbotron">
+    <h1>Add a new book:</h1>
+    @using (Html.BeginForm("AddBook", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+        <div>BookName:</div>
+        @Html.TextBoxFor(m => m.Name)
+        <div>BookPrice:</div>
+                @Html.TextBoxFor(m => m.Price)
+                <div>Cover Image:</div>
+                <input type="file" name="cover" />
+                @Html.HiddenFor(m => m.CoverImagePath)
+
+                <div>Authors:</div>
+                @Html.TextBoxFor(m => m.Author)
+                <div>Description:</div>
+                @Html.TextAreaFor(m => m.Discription)
+                <div>Condition:</div>
+
+                @*@Html.TextBoxFor(m => m.Condition)*@
+                @Html.RadioButtonFor(model => model.Condition, "New")
+                @Html.Label("New", "New")
+                @Html.RadioButtonFor(model => model.Condition, "Used")
+                @Html.Label("Used", "Used")
+
+                <div>ISBN:</div>
+                @Html.TextBoxFor(m => m.ISBN)
+                <br />
+                <input type="submit" value="Add" />
+
+                <br />
+                @Html.ActionLink("Home", "Index", "Home")
+    }
+</div>

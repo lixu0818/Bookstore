@@ -1,0 +1,20 @@
+﻿@model IdentitySample.Models.Book
+@{
+    ViewBag.Title = "Book Detail";
+}
+
+<!DOCTYPE html>
+
+    <div class="jumbotron"> 
+        <h1>Book detail:</h1>
+        <h2>Name: @Model.Name</h2>
+        <h2>ISBN: @Model.ISBN</h2>
+        <h2>Price: @Model.Price $</h2>
+        <h3>Authors: @Model.Author</h3>
+        <h3>Book Condition: @Model.Condition</h3>
+        <p>Description: @Model.Discription</p>
+        <img src="@Url.Content(@Model.CoverImagePath)" alt="Cannot display cover"/>
+        <br />
+        @Html.ActionLink("Home", "Index", "Home")
+    </div>
+

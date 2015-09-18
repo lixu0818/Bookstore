@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Bookstore";
+}
+
+<div class="row">
+    <div class="col-md-6  margin-top-20">
+        <a href="@Url.Action("BookList", "Book", new { pageNumber = 1 }, null)" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-book"></span> All books</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-star-empty"></span> New books</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-star-empty"></span> Used books</a>
+    </div>
+    <div class="col-md-6 margin-top-20">
+        <a href="@Url.Action("ShowBookByPrice", "Book", new { minPrice = 0, maxPrice = 20 }, null)" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> < 20$</a>
+        <a href="@Url.Action("ShowBookByPrice", "Book", new { minPrice = 20, maxPrice = 50 }, null)" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> 20$-50$</a>
+        <a href="@Url.Action("ShowBookByPrice", "Book", new { minPrice = 50, maxPrice = int.MaxValue}, null)" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-search"></span> > 50$</a>
+
+    </div>
+    <div>
+        <p>Search by price range:</p>
+       
+    </div>
+
+
+    @*@Html.ActionLink("show all books", "BookList", "Book", new { pageNumber = 1 }, null)
+
+        @Html.ActionLink("less than 20$", "ShowBookByPrice", "Book", new { minPrice = 0, maxPrice = 20 }, null)<br />
+        @Html.ActionLink("20$ ~ 50$", "ShowBookByPrice", "Book", new { minPrice = 20, maxPrice = 50 }, null)<br />
+        @Html.ActionLink("more than 50$", "ShowBookByPrice", "Book", new { minPrice = 50, maxPrice = int.MaxValue }, null)<br />*@
+
+    <p>_______________________________________</p>
+    <div class="row">
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {       
+            <p>Admin only</p>
+            @Html.ActionLink("增加新书", "AddBook", "Book")<br />
+            @Html.ActionLink("显示下架/删除的书籍", "HiddenBookList", "Book")
+            <p>#To Do显示所有用户</p>
+            <p>#To Do显示所有订单</p>
+        }
+
+
+
+
+    </div>
+    </div>
+
+
